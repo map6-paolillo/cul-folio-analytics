@@ -249,7 +249,7 @@ WITH gov_doc AS (
         WHEN substring(sm.content, 18, 1) IN ('u')
              AND substring(sm.content, 29, 1) IN ('f')
              THEN '1'
-             ELSE '0' END AS gov_doc
+             ELSE '0' END AS govdoc
     FROM
     srs_marctab sm
     WHERE
@@ -257,16 +257,16 @@ WITH gov_doc AS (
 ),
 issn_select AS (
     SELECT 
-    sm.instance_hrid AS instance_hrid,
+    sm.instance_hrid AS local_id,
     sm.field AS field,
-    sm.CONTENT AS issn_no
+    sm.CONTENT AS issn
     FROM srs_marctab sm
     WHERE (sm.field = '022' AND sm.sf = 'a' )
 ),
 dist_hrid_select AS (
    SELECT 
    DISTINCT(ho.instance_hrid),
-   ho.oclc_no AS oclc_no
+   ho.oclc_no AS oclc
    FROM local_hathi.h_s_8 AS ho
 )
 SELECT
@@ -279,8 +279,8 @@ SELECT
    LEFT JOIN issn_select AS issn ON ds.instance_hrid = issn.instance_hrid
    GROUP BY ds.oclc_no, ds.instance_hrid,  issn.issn_no, gd.gov_doc
 ;
-CREATE INDEX ON local_hathi.h_s_final (oclc_no);
-CREATE INDEX ON local_hathi.h_s_final (instance_hrid);
-CREATE INDEX ON local_hathi.h_s_final (issn_no);
-CREATE INDEX ON local_hathi.h_s_final (gov_doc);
+CREATE INDEX ON local_hathi.h_s_final (oclc);
+CREATE INDEX ON local_hathi.h_s_final (local_id);
+CREATE INDEX ON local_hathi.h_s_final (issn);
+CREATE INDEX ON local_hathi.h_s_final (govdoc);
 
