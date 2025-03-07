@@ -333,3 +333,10 @@ SELECT
    LEFT JOIN gov_doc AS gd ON hm.instance_hrid = gd.instance_hrid
    WHERE hm.status != 'NWD'
 ;
+---10---------change column headings to follow HT spec--------------------------------
+ALTER TABLE local_hathitrust.h_mv_final RENAME COLUMN "OCLC" to oclc;
+ALTER TABLE local_hathitrust.h_mv_final RENAME COLUMN "Bib_id" to local_id;
+ALTER TABLE local_hathitrust.h_mv_final RENAME COLUMN "GovDoc" to govdoc;
+ALTER TABLE local_hathitrust.h_mv_final RENAME COLUMN "Status" to status;
+ALTER TABLE local_hathitrust.h_mv_final RENAME COLUMN "Condition" to "condition";
+ALTER TABLE local_hathitrust.h_mv_final RENAME COLUMN "Enum/Chron" to enum_chron;
