@@ -284,3 +284,11 @@ CREATE INDEX ON local_hathitrust.h_s_final (instance_hrid);
 CREATE INDEX ON local_hathitrust.h_s_final (issn_no);
 CREATE INDEX ON local_hathitrust.h_s_final (gov_doc);
 
+---10---------change column headings to follow HT spec--------------------------------
+ALTER TABLE local_hathitrust.h_s_final RENAME COLUMN oclc_no to oclc;
+ALTER TABLE local_hathitrust.h_s_final RENAME COLUMN instance_hrid to local_id;
+ALTER TABLE local_hathitrust.h_s_final RENAME COLUMN issn_no to issn;
+ALTER TABLE local_hathitrust.h_s_final RENAME COLUMN gov_doc to govdoc;
+
+
+
