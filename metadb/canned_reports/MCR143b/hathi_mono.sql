@@ -312,3 +312,8 @@ DROP table IF EXISTS local_hathitrust.h_mo_8;
 DROP table IF EXISTS local_hathitrust.h_mo_8b;
 DROP table IF EXISTS local_hathitrust.h_mo_9;
 
+-------------------10 change column names to reflect HT spec-------------------
+ALTER TABLE local_hathitrust.h_mo_final RENAME COLUMN "Bib Id" to local_id;
+ALTER TABLE local_hathitrust.h_mo_final RENAME COLUMN "Status" to status;
+ALTER TABLE local_hathitrust.h_mo_final RENAME COLUMN "Condition" to "condition";
+
